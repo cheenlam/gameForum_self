@@ -22,6 +22,7 @@ img {
             width: 80px;
             margin-right: 20px;
             flex-shrink: 0;
+            cursor: pointer;
         }
         .hd_Tool {
             width: 100%;
@@ -310,6 +311,32 @@ img {
         }
     }
 }
+
+// ==== gameIf strat =====
+.gameIf{
+    width: 100%;
+    min-height: calc(100vh - 212px);
+    padding: 50px 0 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .gameIf_name{
+        padding-bottom: 30px;
+        font-size: 32px;
+        color: $gameName;
+        text-align: center;
+    }
+    .gameIf_cnt{
+        margin: auto;
+        display: inline-block;
+        background-color: #0afd;
+        overflow: hidden;
+    }
+    iframe{
+        transform-origin: left top;
+    }
+}
+
 
 // ==== footer strat ====
 .footer {
