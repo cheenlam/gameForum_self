@@ -1,0 +1,334 @@
+img {
+    width: 100%;
+    vertical-align: middle;
+}
+
+// ==== header strat =====
+.header {
+    background-color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 2px 10px #333;
+    .hd_main {
+        max-width: 1280px;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+
+        .hd_logo {
+            width: 80px;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        .hd_Tool{
+            width: 100%;
+        }
+        .tool_cnt {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            color: $mainColor;
+            justify-content: space-between;
+        }
+        .hd_mainMenu {
+            li {
+                height: 100%;
+                font-weight: bold;
+                cursor: pointer;
+            }
+        }
+        .hd_mbrBtn {
+            display: flex;
+            align-items: center;
+            border: 1px solid $mainColor;
+            color: $mainColor;
+            .mbrBtn {
+                padding: 10px;
+                cursor: pointer;
+                &.login {
+                    background-color: $mainColor;
+                    color: #fff;
+                }
+            }
+        }
+        .minTool_btn {
+            width: 40px;
+            height: 40px;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+            display: none;
+            span {
+                width: calc(100% - 15px);
+                height: 2px;
+                display: inline-block;
+                border-radius: 2px;
+                background-color: $mainColor;
+            }
+            &::after,
+            &::before {
+                content: "";
+                width: calc(100% - 15px);
+                height: 2px;
+                margin: auto;
+                background-color: $mainColor;
+                position: absolute;
+                @include pos(tblr, 0);
+            }
+            &::after {
+                top: 12px;
+            }
+            &::before {
+                bottom: 12px;
+            }
+        }
+
+        @include rwd(800) {
+            .minTool_btn {
+                display: flex;
+            }
+            .hd_Tool{
+                width: 100%;
+                height: 100vh;
+                position: fixed;
+                @include pos(tl,0);
+                z-index: 10;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.3s 0.2s;
+                &.on {
+                    opacity: 1;
+                    pointer-events: auto;
+                    transition: opacity 0.3s;
+                    .tool_cnt {
+                        transform: rotate(0) translateX(0);
+                        transition: transform 0.3s 0.2s;
+                    }
+                }
+
+                .close{
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(0, 0, 0, 0.7);
+                }
+                .tool_cnt{
+                    width: calc(100vw - 100px);
+                    max-width: 400px;
+                    height: 100%;
+                    padding: 30px 10px;
+                    position: absolute;
+                    @include pos(tl,0);
+                    background-color: #fff;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    transform: rotate(0) translateX(-100%);
+                    transition: transform 0.3s;
+                }
+                .hd_mainMenu{
+                    margin-bottom: 20px;
+                }
+                .hd_mbrBtn{
+                    width: 100%;
+                    flex-direction: column;
+                    border: none;
+                    .mbrBtn{
+                        width: 100%;
+                        max-width: 250px;
+                        border: 1px solid #f22026;
+                        text-align: center;
+                        &+.mbrBtn{
+                            margin-top: 8px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .hd_secondMenu {
+        padding: 0 10px;
+        background-color: $menu_bg;
+        .topTitle {
+            width: 100%;
+            padding: 15px 10px;
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            color: #fff;
+        }
+        .arrow {
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 13px 7.5px 0 7.5px;
+            border-color: #fff transparent transparent transparent;
+            transition: .3s;
+        }
+
+        ul {
+            max-width: 1280px;
+            margin: auto;
+            display: flex;
+        }
+        a {
+            padding: 15px 20px;
+            color: #aaa;
+            display: inline-block;
+            font-size: 14px;
+            cursor: pointer;
+            transition: color 0.5s;
+            &:hover {
+                color: #fff;
+            }
+        }
+
+        @include rwd(800) {
+            padding: 0;
+            .topTitle{
+                display: flex;
+            }
+            ul {
+                height: 0;
+                background-color: #454545;
+                transform: scaleY(0);
+                transform-origin: center top;
+                flex-direction: column;
+                a {
+                    width: 100%;
+                    padding-left: 10px;
+                }
+            }
+            &.on {
+                ul {
+                    height: 100%;
+                    transform: scaleY(1);
+                    transition: 0.3s;
+                }
+                .arrow{
+                    transform: scaleY(-1);
+                }
+            }
+        }
+    }
+
+}
+
+// ==== gameList strat =====
+.gameList {
+    padding: 20px 10px 80px;
+    ul {
+        max-width: 1280px;
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    li {
+        width: calc(100% / 3);
+        padding: 0px 5px 20px;
+        @include rwd(1100) {
+            width: calc(100% / 2);
+        }
+        @include rwd(600) {
+            width: 100%;
+            padding-bottom: 15px;
+            a {
+                display: flex;
+            }
+            .game_pic {
+                width: 60%;
+                padding-bottom: 34%;
+            }
+            .game_name {
+                width: 40%;
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+
+        &:hover {
+            a {
+                box-shadow: none;
+                transform: translateY(2px);
+            }
+            .game_mask {
+                opacity: 1;
+            }
+        }
+    }
+    a {
+        display: block;
+        position: relative;
+        cursor: pointer;
+        box-shadow: 2px 2px 4px #333;
+        transition: 0.5s;
+    }
+    .game_pic {
+        height: 0;
+        padding-bottom: 61%;
+        background: no-repeat center top / cover;
+    }
+    .game_name {
+        width: 100%;
+        padding: 15px 10px;
+        font-weight: bold;
+        position: absolute;
+        @include pos(bl, 0);
+        background-color: $menu_bg;
+        color: #fff;
+        font-size: 14px;
+    }
+    .game_mask {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        @include pos(tl, 0);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(0, 0, 0, 0.6);
+        opacity: 0;
+        transition: opacity 0.5s;
+        span {
+            padding: 10px 20px;
+            color: #fff;
+            background-color: #f22026;
+            position: relative;
+            &::before {
+                content: "";
+                width: calc(100% - 10px);
+                height: calc(100% - 10px);
+                margin: auto;
+                position: absolute;
+                @include pos(tbrl, 0);
+                border: 1px solid #ccc;
+            }
+        }
+    }
+}
+
+// ==== footer strat ====
+.footer {
+    background-color: $ft_bg;
+    .ft_inner {
+        max-width: 1280px;
+        margin: auto;
+        padding: 30px 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .ft_logo {
+        width: 60px;
+        flex-shrink: 0;
+        margin-right: 10px;
+    }
+    .ft_state {
+        color: #343434;
+        font-size: 14px;
+    }
+}
